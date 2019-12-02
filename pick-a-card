@@ -1,0 +1,122 @@
+/*
+	ITS 240 Sections 01 (K.Cole) and 02 (T. Bebout & S. Herrera)Final Project: Pick-A-Card
+	By Tinnekke Bebout, Suzana Herrera, and Kyle Cole
+	4/30/2018
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h> /*This is the time header file, you must include this when you are using random numbers*/
+#include <string.h>
+#include <ctype.h>
+
+#define MAXSIZE 78
+int rand_int(int n);
+void draw_a_card();
+
+	char card[MAXSIZE][MAXSIZE]= {"Ace of Trees", "Two of Trees", "Three of Trees", "Four of Trees", "Five of Trees", "Six of Trees", "Seven of Trees", "Eight of Trees", "Nine of Trees", "Ten of Trees", "Maiden of Trees", "Warrior of Trees", 
+					"Queen of Trees", "Mystic of Trees", "Ace of Cups", "Two of Cups", "Three of Cups", "Four of Cups", "Five of Cups", "Six of Cups", "Sevens of Cups", "Eight of Cups", "Nine of Cups", "Ten of Cups",
+					"Maiden of Cups", "Warrior of Cups", "Queen of Cups", "Mystic of Cups", "Ace of Blades", "Two of Blades", "Three of Blades", "Four of Blades", "Five of Blades", "Six of Blades", "Seven of Blades", "Eight of Blades",
+					"Nine of Blades", "Ten of Blades", "Maiden of Blades", "Warrior of Blades", "Queen of Blades", "Mystic of Blades", "Ace of Discs", "Two of Discs", "Three of Discs", "Four of Discs", "Five of Discs", "Six of Discs",
+					"Seven of Discs", "Eight of Discs", "Nine of Discs", "Ten Of Discs", "Maiden of Discs", "Warrior of Discs", "Queen of Discs", "Mystic of Discs", "The Seeker", "The Sorceress", "The High Priestess","The Empress", 
+					"The Amazon", "The Oracle", "The Lovers", "The Chariot", "Strength", "The Hermit", "The Wheel of Fortune", "Justice", "the Hanged One", "Death", "Temperance", "Medusa", "The Tower", "The Star", "The Moon", 
+					"The Sun", "Awakening", "The World"};
+	char keywords[MAXSIZE][MAXSIZE] = {"New Ideas and New Areas of Study", "Creative Thoughts and Ideas Have Potential", "Ideas Turning into Plans", "Get Your Thoughts in Order",
+					"Rid Yourself of False Ideas", "Use your Creative Energy to Make Something New", "Listen to Your Intuition", "Make an Effort to Communicate Clearly", 
+					"Work on Unfulfilled Goals", "Time to Turn Plans into Actions", "Time for a New Journey in Life: Make Plans", "Lay the Foundations of Change", "Create the Vision of a New Future",
+					"The Final Shape of the Journey has Formed. Are You Ready?", "New Relationships are Possible", "Partnership and Sharing with Friends and Loved Ones", "Time to Celebrate and Enjoy Life",
+					"Time to Withdraw and Meditate", "Rid Yourself of Hurtful Relationships", "Relax and Engage in Play", "Focus on your Ideals and Pay Attention to Your Dreams",
+					"Your Heart and Mind are in Harmony", "Let Your Imagination Run Wild and Follow Its Lead", "A Happy and Fulfilling Life", "A Spiritual Journey is Coming",
+					"Time to Make a Difference in the World", "Emotional Clarity and Purpose", "Time to Seek Higher Truths", "New Plans for Action Take Shape", "Energy in Need of Direction",
+					"Focus on Priorities and Act with Intent", "Pay Attention to Small Details", "Let Go of Self-Destructive Habits", "Use Your Passions to Improve the World",
+					"New Creative Projects are Possible", "Think Before You Act", "A Time to Pause and Reflect", "Have the Courage of Your Convictions", "Beginning a New Phase of Life", 
+					"Understand the Purpose Behind Your Actions", "Time to Rouse Others into Action", "Act with Determination and Self-Awareness", "New Work-Related Skills or a New Job",
+					"Better Yourself Through Your Own Efforts", "Enjoy the Fruits of Your Labors", "Establishing Solid Foundations", "Time to Rid Your Life of CLutter", "Seek for Balance Between Work and Rest",
+					"Appreciate What You Have", "Bring Mind and Body into Balance", "Share Your Abundance with Those in Need", "Time for Harvest, Goals are Achieved", "Creating a Happy Home",
+					"Make Solid Foundations for the Future", "Future Success is Possible", "Focus on Personal Growth", "New Beginnings", "The Power to Manifest Ideas", "Time to Seek a Teacher",
+					"Nurture Life", "Claim Your Power", "Seek the Unknown", "Connect with Life", "Take Control of Your Destiny", "Learn to Be Present in the Moment", "Time for Solitude",
+					"Accept Life's Changes", "Think Twice and Act Once", "See Things from a Different Perspective", "Be Mindful of Your Choices", "Quit Using Your Fears as a Crutch",
+					"Let Go of Ego", "Seek Knowledge of the Divine", "A Calling to a Vision Quest", "Rediscover the Inner Child", "Awaken to All That Surrounds You", "You are One with the Universe"};	
+
+int x,y;
+int main()
+{
+	int i;
+		//create our struct
+	struct userName
+	{
+	char firstName[20];
+	char lastName[20];
+
+	}; //need to put semicolon at the end of a struct!!
+	
+	struct userName person; 
+	int f; //counter for our loop
+	
+	for(f=0;f<1;f++) //for loop to read our data from the keyboard and populate the array
+	{
+		printf("Please enter your first name: ");
+		scanf("%s", &person.firstName);  //strings are automatically pointers
+		
+		printf("Please enter your last name: ");
+		scanf("%s", &person.lastName); //so strings don't need pass by reference
+	
+		printf("\n");
+	}
+	
+	
+    srand(time(NULL)); /*This is to set the seed for random numbers*/
+	
+
+    printf("%s %s, would you like to do a 1, 2, or 3 card draw? (Press 0 to exit): ", person.firstName, person.lastName);
+    scanf("%d",&y);
+	if(y==0)
+	{
+		printf("Thank you for playing , %s %s\n", person.firstName, person.lastName);
+		
+	}
+	else if(y == 3)
+	{
+		printf("The three card draw covers past, present, and future influences. The first card is the past.\n");
+		printf("The second is the present, and the third is the future.\n");
+		for(x=1; x<=y; x++)
+       {
+		   
+           draw_a_card(); 
+		   
+
+       }
+	}
+	else
+	{
+		printf("You have chosen a daily draw. Here are your card(s): \n");
+		for(x=1; x<=y; x++)
+       {
+		   
+           draw_a_card(); 
+		   
+
+       }
+	}
+	
+		return 0;
+}
+
+void draw_a_card() /*void because we aren't returning a value*/
+{
+    int j;
+	
+	
+    j=rand_int(MAXSIZE); /*Receives a number back*/
+	
+	printf("Your card is: %s. The influences are: %s. \n",card[j], keywords[j]);
+	
+	return;
+}
+
+int rand_int(int n)
+{
+    return rand()%n; /*Returns a number from 0 to N-1*/
+
+
+}
